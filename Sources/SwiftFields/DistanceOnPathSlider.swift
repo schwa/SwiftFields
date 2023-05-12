@@ -51,7 +51,7 @@ public struct PathSlider: View {
 
 // MARK: -
 
-struct DistanceOnPathSlider <Thumb>: View where Thumb: View {
+internal struct DistanceOnPathSlider <Thumb>: View where Thumb: View {
 
     private let path: Path
     private let thumb: Thumb
@@ -80,7 +80,7 @@ struct DistanceOnPathSlider <Thumb>: View where Thumb: View {
 }
 
 
-struct PathSegments {
+internal struct PathSegments {
     let segments: [CGPoint]
 
     init(path: Path, segments: Int) {
@@ -119,13 +119,13 @@ struct PathSegments {
     }
 }
 
-extension CGPoint {
+internal extension CGPoint {
     func distanceSquared(to other: CGPoint) -> CGFloat {
         (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y)
     }
 }
 
-extension Path {
+internal extension Path {
     var startPoint: CGPoint? {
         let r = trimmedPath(from: 0, to: 0.00001).boundingRect
         print(r)
