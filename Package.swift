@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftFields",
+    platforms: [
+        .iOS(.v16),
+        .macOS(.v13),
+    ],
     products: [
         .library(
             name: "SwiftFields",
