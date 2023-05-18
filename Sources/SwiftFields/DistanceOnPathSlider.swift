@@ -34,8 +34,6 @@ public struct PathSlider: View {
 
             }
 
-
-
             DistanceOnPathSlider(value: binding, path: path) {
                 ZStack {
                     Circle().fill(Color.white)
@@ -61,11 +59,11 @@ internal struct DistanceOnPathSlider <Thumb>: View where Thumb: View {
 
     private let segments: PathSegments
 
-    init(value: Binding<Double>, path: Path, thumb: () -> Thumb) {
+    init(value: Binding<Double>, path: Path, segments: Int = 100, thumb: () -> Thumb) {
         self._value = value
         self.path = path
         self.thumb = thumb()
-        self.segments = PathSegments(path: path, segments: 10)
+        self.segments = PathSegments(path: path, segments: segments)
     }
 
     var body: some View {
@@ -79,56 +77,3 @@ internal struct DistanceOnPathSlider <Thumb>: View where Thumb: View {
     }
 }
 
-
-internal struct PathSegments {
-    let segments: [CGPoint]
-
-    init(path: Path, segments: Int) {
-        assert(segments > 0)
-        self.segments =
-        [path.startPoint!]
-        + (0 ..< segments).reduce(into: []) { partialResult, segment in
-            let from = Double(segment) / Double(segments)
-            let to = Double(segment + 1) / Double(segments)
-
-            let rect = path.trimmedPath(from: from, to: to).boundingRect
-            partialResult.append(CGPoint(x: rect.midX, y: rect.midY))
-        }
-        + [ path.currentPoint! ]
-    }
-
-    func value(for point: CGPoint) -> Double {
-        guard let firstSegment = segments.first else {
-            fatalError()
-        }
-        var lowestDistance = firstSegment.distanceSquared(to: point)
-        var closestSegmentIndex = 0
-        segments.enumerated().dropFirst().forEach { index, segment in
-            let distance = segment.distanceSquared(to: point)
-            if distance < lowestDistance {
-                lowestDistance = distance
-                closestSegmentIndex = index
-            }
-        }
-        return Double(closestSegmentIndex) / Double(segments.count - 1)
-
-    }
-
-    func segment(for value: Double) -> CGPoint {
-        return segments[min(Int(value * Double(segments.count)), segments.count - 1)]
-    }
-}
-
-internal extension CGPoint {
-    func distanceSquared(to other: CGPoint) -> CGFloat {
-        (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y)
-    }
-}
-
-internal extension Path {
-    var startPoint: CGPoint? {
-        let r = trimmedPath(from: 0, to: 0.00001).boundingRect
-        print(r)
-        return CGPoint(x: r.midX, y: r.midY)
-    }
-}

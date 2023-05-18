@@ -19,9 +19,16 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "SwiftFields"),
+            name: "SwiftFields",
+            dependencies: [
+                "SwiftFormats"
+            ]
+        ),
         .testTarget(
             name: "SwiftFieldsTests",
-            dependencies: ["SwiftFields"]),
+            dependencies: [
+                "SwiftFields"
+            ]
+        ),
     ]
 )
