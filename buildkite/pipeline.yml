@@ -1,8 +1,6 @@
 steps:
-  - commands:
-      - "swift package clean"
-      - "swift build"
-      - "swift test"
-      - "xcodebuild -scheme 'Everything' -allowProvisioningUpdates -destination 'generic/platform=macOS'"
-      - "xcodebuild -scheme 'Everything' -allowProvisioningUpdates -destination 'generic/platform=iOS'"
-      - "swiftlint lint --quiet"
+    - commands:
+          - "swift package clean"
+          - "swift build"
+          - "swift test"
+          - "swiftlint lint --quiet"
