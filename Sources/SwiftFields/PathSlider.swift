@@ -4,33 +4,44 @@ public struct PathSlider: View {
     @Binding
     private var value: Double
 
-    private let range: ClosedRange<Double>
-    private let path: Path
+    @Environment(\.controlSize)
+    var controlSize
 
-    public init(value: Binding<Double>, in range: ClosedRange<Double> = 0 ... 1, path: Path) {
+    private let range: ClosedRange<Double>
+    private let trackPath: Path
+    private let thumbPath: Path
+
+    public init(value: Binding<Double>, in range: ClosedRange<Double> = 0 ... 1, trackPath: Path, thumbPath: Path) {
         self._value = value
         self.range = range
-        self.path = path
+        self.trackPath = trackPath
+        self.thumbPath = thumbPath
     }
 
     public var body: some View {
-        ZStack {
+        return ZStack {
+            let geometry = controlSize.pathSliderGeometry
             let binding = Binding {
                 return (value - range.lowerBound) / (range.upperBound - range.lowerBound)
             } set: { newValue in
                 value = newValue * (range.upperBound - range.lowerBound) + range.lowerBound
             }
-            path.trimmedPath(from: binding.wrappedValue, to: 1).stroke(Color.sliderBackground, lineWidth: 4)
-            path.trimmedPath(from: 0, to: binding.wrappedValue).stroke(Color.accentColor, lineWidth: 4)
+            trackPath.stroke(Color.sliderBackground, style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
+            trackPath.trimmedPath(from: 0, to: binding.wrappedValue).stroke(Color.accentColor, style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
 
-            PathSliderHelper(value: binding, path: path) {
+            PathSliderHelper(value: binding, path: thumbPath) {
                 Thumb {
                     Circle()
                 }
-                .frame(width: 20, height: 20)
+                .frame(width: geometry.thumbSize.width, height: geometry.thumbSize.height)
             }
         }
-        .frame(width: max(path.boundingRect.width, 20), height: max(path.boundingRect.height, 20))
+    }
+}
+
+public extension PathSlider {
+    init(value: Binding<Double>, in range: ClosedRange<Double> = 0 ... 1, path: Path) {
+        self.init(value: value, in: range, trackPath: path, thumbPath: path)
     }
 }
 
@@ -61,4 +72,3 @@ internal struct PathSliderHelper <Thumb>: View where Thumb: View {
         }
     }
 }
-

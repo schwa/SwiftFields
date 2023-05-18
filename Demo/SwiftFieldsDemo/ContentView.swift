@@ -12,8 +12,11 @@ struct ContentView: View {
                 NavigationLink("PathSliderDemo") {
                     PathSliderDemo()
                 }
-                NavigationLink("ClosedRangeSliderDemo") {
+                NavigationLink("VerticalSliderDemo") {
                     ClosedRangeSliderDemo()
+                }
+                NavigationLink("VerticalSliderDemo") {
+                    VerticalSliderDemo()
                 }
             }
         }
@@ -38,21 +41,16 @@ struct ClosedRangeSliderDemo: View {
     }
 }
 
-extension ClosedRange {
-    var editableLowerBound: Bound {
-        get {
-            lowerBound
+struct VerticalSliderDemo: View {
+    @State
+    var value: Double = 50
+
+    var body: some View {
+        VStack {
+            TextField("Value", value: $value, format: .number)
+            Slider(value: $value, in: 0 ... 100)
+            VerticalSlider(value: $value, in: 0 ... 100).frame(height: 100)
         }
-        set {
-            self = newValue ... upperBound
-        }
-    }
-    var editableUpperBound: Bound {
-        get {
-            upperBound
-        }
-        set {
-            self = lowerBound ... newValue
-        }
+        .frame(width: 100)
     }
 }

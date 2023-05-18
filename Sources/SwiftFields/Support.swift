@@ -125,3 +125,34 @@ internal struct Thumb <S>: View where S: Shape {
         }
     }
 }
+
+public struct PathSliderGeometry {
+    public var thumbSize: CGSize
+    public var trackWidth: CGFloat
+
+    public init(_ controlSize: ControlSize) {
+        switch controlSize {
+        case .mini:
+            thumbSize = CGSize(width: 10, height: 10)
+            trackWidth = 2
+        case .small:
+            thumbSize = CGSize(width: 16, height: 16)
+            trackWidth = 3
+        case .regular:
+            thumbSize = CGSize(width: 20, height: 20)
+            trackWidth = 4
+        case .large:
+            thumbSize = CGSize(width: 30, height: 30)
+            trackWidth = 6
+        @unknown default:
+            thumbSize = CGSize(width: 20, height: 20)
+            trackWidth = 4
+        }
+    }
+}
+
+internal extension ControlSize {
+    var pathSliderGeometry: PathSliderGeometry {
+        return PathSliderGeometry(self)
+    }
+}

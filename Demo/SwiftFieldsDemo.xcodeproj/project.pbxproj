@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4515C7EA2A0EC56900E56D8D /* SwiftFields in Frameworks */ = {isa = PBXBuildFile; productRef = 4515C7E92A0EC56900E56D8D /* SwiftFields */; };
+		45297B9B2A16AD0300BA1BC2 /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45297B9A2A16AD0300BA1BC2 /* Support.swift */; };
 		45915A302A13CD4600916223 /* AngleEditorDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45915A2F2A13CD4600916223 /* AngleEditorDemo.swift */; };
 		459F6F232A16891B001E4E6F /* PathSliderDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F6F222A16891B001E4E6F /* PathSliderDemo.swift */; };
 		45E5129A2A0EC5190070D177 /* SwiftFieldsDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E512992A0EC5190070D177 /* SwiftFieldsDemoApp.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		4515C7E72A0EC56100E56D8D /* SwiftFields */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftFields; path = ..; sourceTree = "<group>"; };
+		45297B9A2A16AD0300BA1BC2 /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		45915A2F2A13CD4600916223 /* AngleEditorDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleEditorDemo.swift; sourceTree = "<group>"; };
 		459F6F222A16891B001E4E6F /* PathSliderDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSliderDemo.swift; sourceTree = "<group>"; };
 		45E512962A0EC5190070D177 /* SwiftFieldsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFieldsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,7 @@
 				45E5129B2A0EC5190070D177 /* ContentView.swift */,
 				459F6F222A16891B001E4E6F /* PathSliderDemo.swift */,
 				45915A2F2A13CD4600916223 /* AngleEditorDemo.swift */,
+				45297B9A2A16AD0300BA1BC2 /* Support.swift */,
 				45E5129D2A0EC5190070D177 /* Assets.xcassets */,
 				45E5129F2A0EC5190070D177 /* SwiftFieldsDemo.entitlements */,
 				45E512A02A0EC5190070D177 /* Preview Content */,
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				459F6F232A16891B001E4E6F /* PathSliderDemo.swift in Sources */,
+				45297B9B2A16AD0300BA1BC2 /* Support.swift in Sources */,
 				45E5129C2A0EC5190070D177 /* ContentView.swift in Sources */,
 				45E5129A2A0EC5190070D177 /* SwiftFieldsDemoApp.swift in Sources */,
 				45915A302A13CD4600916223 /* AngleEditorDemo.swift in Sources */,
