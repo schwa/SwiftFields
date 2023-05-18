@@ -7,7 +7,6 @@ analyzer_rules:
 only_rules:
     - accessibility_label_for_image
     # - anonymous_argument_in_multiline_closure
-    - anyobject_protocol
     - array_init
     - balanced_xctest_lifecycle
     - block_based_kvo
@@ -85,7 +84,6 @@ only_rules:
     # - implicitly_unwrapped_optional
     - inclusive_language
     # - indentation_width
-    - inert_defer
     - is_disjoint
     - joined_default_parameter
     # - large_tuple
@@ -195,7 +193,6 @@ only_rules:
     - unneeded_parentheses_in_closure_argument
     - unowned_variable_capture
     - untyped_error_in_catch
-    - unused_capture_list
     - unused_closure_parameter
     - unused_control_flow_label
     - unused_enumerated
@@ -216,4 +213,4 @@ only_rules:
     - yoda_condition
 included:
     - Sources
-line_length: 240
+#line_length: 240
