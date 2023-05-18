@@ -26,7 +26,11 @@ public struct PathSlider: View {
             } set: { newValue in
                 value = newValue * (range.upperBound - range.lowerBound) + range.lowerBound
             }
+
             trackPath.stroke(Color.sliderBackground, style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
+
+            //trackPath.stroke(.shadow(.inner(color: .pink.opacity(0.0), radius: 1)), style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
+
             trackPath.trimmedPath(from: 0, to: binding.wrappedValue).stroke(Color.accentColor, style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
 
             PathSliderHelper(value: binding, path: thumbPath) {

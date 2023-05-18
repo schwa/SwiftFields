@@ -15,8 +15,8 @@ struct ContentView: View {
                 NavigationLink("ClosedRangeSliderDemo") {
                     ClosedRangeSliderDemo()
                 }
-                NavigationLink("VerticalSliderDemo") {
-                    VerticalSliderDemo()
+                NavigationLink("YASliderDemo") {
+                    YASliderDemo()
                 }
             }
             .frame(minWidth: 200)
@@ -42,7 +42,7 @@ struct ClosedRangeSliderDemo: View {
     }
 }
 
-struct VerticalSliderDemo: View {
+struct YASliderDemo: View {
     @State
     var value: Double = 50
 
@@ -50,7 +50,8 @@ struct VerticalSliderDemo: View {
         VStack {
             TextField("Value", value: $value, format: .number)
             Slider(value: $value, in: 0 ... 100)
-            VerticalSlider(value: $value, in: 0 ... 100).frame(height: 100)
+            YASlider(value: $value, in: 0 ... 100, axis: .horizontal)
+            YASlider(value: $value, in: 0 ... 100, axis: .vertical).frame(height: 100)
         }
         .frame(width: 100)
     }

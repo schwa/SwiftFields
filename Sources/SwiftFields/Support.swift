@@ -108,7 +108,7 @@ internal struct PathSegments {
 }
 
 internal extension Color {
-    static let sliderBackground = Color.black.opacity(0.1)
+    static let sliderBackground = Color(white: 0.875)
 }
 
 internal struct Thumb <S>: View where S: Shape {
@@ -133,8 +133,8 @@ public struct PathSliderGeometry {
     public init(_ controlSize: ControlSize) {
         switch controlSize {
         case .mini:
-            thumbSize = CGSize(width: 10, height: 10)
-            trackWidth = 2
+            thumbSize = CGSize(width: 14, height: 14)
+            trackWidth = 3
         case .small:
             thumbSize = CGSize(width: 16, height: 16)
             trackWidth = 3
@@ -142,8 +142,8 @@ public struct PathSliderGeometry {
             thumbSize = CGSize(width: 20, height: 20)
             trackWidth = 4
         case .large:
-            thumbSize = CGSize(width: 30, height: 30)
-            trackWidth = 6
+            thumbSize = CGSize(width: 20, height: 20)
+            trackWidth = 4
         @unknown default:
             thumbSize = CGSize(width: 20, height: 20)
             trackWidth = 4
