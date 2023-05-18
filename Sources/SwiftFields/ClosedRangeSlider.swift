@@ -2,10 +2,15 @@ import SwiftUI
 
 public struct ClosedRangeSlider: View {
     @Binding
-    var value: ClosedRange<Double>
+    private var value: ClosedRange<Double>
 
-    public init(value: Binding<ClosedRange<Double>>) {
+    private let lowerLimit: ClosedRange<Double> // TODO: not used yet
+    private let upperLimit: ClosedRange<Double> // TODO: not used yet
+
+    public init(value: Binding<ClosedRange<Double>>, lowerLimit: ClosedRange<Double> = 0 ... 1, upperLimit: ClosedRange<Double> = 0 ... 1) {
         self._value = value
+        self.lowerLimit = lowerLimit
+        self.upperLimit = upperLimit
     }
 
     public var body: some View {
@@ -26,19 +31,15 @@ public struct ClosedRangeSlider: View {
                 linePath.trimmedPath(from: 0, to: 1).stroke(Color(white: 0.87), style: .init(lineWidth: 4, lineCap: .round))
                 linePath.trimmedPath(from: value.lowerBound, to: value.upperBound).stroke(Color.accentColor, style: .init(lineWidth: 4, lineCap: .round))
 
-                DistanceOnPathSlider(value: lowerBound, path: path) {
-                    ZStack {
-                        let shape = ArcShape(angle: .degrees(180), width: .degrees(180))
-                        shape.fill(Color.white)
-                        shape.stroke(Color.black.opacity(0.1), lineWidth: 0.5)
+                PathSliderHelper(value: lowerBound, path: path) {
+                    Thumb {
+                        ArcShape(angle: .degrees(180), width: .degrees(180))
                     }
                     .frame(width: 20, height: 20)
                 }
-                DistanceOnPathSlider(value: upperBound, path: path) {
-                    ZStack {
-                        let shape = ArcShape(angle: .degrees(0), width: .degrees(180))
-                        shape.fill(Color.white)
-                        shape.stroke(Color.black.opacity(0.1), lineWidth: 0.5)
+                PathSliderHelper(value: upperBound, path: path) {
+                    Thumb {
+                        ArcShape(angle: .degrees(0), width: .degrees(180))
                     }
                     .frame(width: 20, height: 20)
                 }
