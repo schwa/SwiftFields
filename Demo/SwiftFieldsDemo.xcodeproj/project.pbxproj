@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4515C7EA2A0EC56900E56D8D /* SwiftFields in Frameworks */ = {isa = PBXBuildFile; productRef = 4515C7E92A0EC56900E56D8D /* SwiftFields */; };
-		4515C7EC2A0EC7C900E56D8D /* PathSliderDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4515C7EB2A0EC7C900E56D8D /* PathSliderDemo.swift */; };
 		45915A302A13CD4600916223 /* AngleEditorDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45915A2F2A13CD4600916223 /* AngleEditorDemo.swift */; };
+		459F6F232A16891B001E4E6F /* PathSliderDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459F6F222A16891B001E4E6F /* PathSliderDemo.swift */; };
 		45E5129A2A0EC5190070D177 /* SwiftFieldsDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E512992A0EC5190070D177 /* SwiftFieldsDemoApp.swift */; };
 		45E5129C2A0EC5190070D177 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5129B2A0EC5190070D177 /* ContentView.swift */; };
 		45E5129E2A0EC5190070D177 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E5129D2A0EC5190070D177 /* Assets.xcassets */; };
@@ -18,8 +18,8 @@
 
 /* Begin PBXFileReference section */
 		4515C7E72A0EC56100E56D8D /* SwiftFields */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftFields; path = ..; sourceTree = "<group>"; };
-		4515C7EB2A0EC7C900E56D8D /* PathSliderDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathSliderDemo.swift; path = ../../../../../Desktop/PathSliderDemo.swift; sourceTree = "<group>"; };
 		45915A2F2A13CD4600916223 /* AngleEditorDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AngleEditorDemo.swift; sourceTree = "<group>"; };
+		459F6F222A16891B001E4E6F /* PathSliderDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathSliderDemo.swift; sourceTree = "<group>"; };
 		45E512962A0EC5190070D177 /* SwiftFieldsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFieldsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E512992A0EC5190070D177 /* SwiftFieldsDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFieldsDemoApp.swift; sourceTree = "<group>"; };
 		45E5129B2A0EC5190070D177 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			children = (
 				45E512992A0EC5190070D177 /* SwiftFieldsDemoApp.swift */,
 				45E5129B2A0EC5190070D177 /* ContentView.swift */,
-				4515C7EB2A0EC7C900E56D8D /* PathSliderDemo.swift */,
+				459F6F222A16891B001E4E6F /* PathSliderDemo.swift */,
 				45915A2F2A13CD4600916223 /* AngleEditorDemo.swift */,
 				45E5129D2A0EC5190070D177 /* Assets.xcassets */,
 				45E5129F2A0EC5190070D177 /* SwiftFieldsDemo.entitlements */,
@@ -168,7 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4515C7EC2A0EC7C900E56D8D /* PathSliderDemo.swift in Sources */,
+				459F6F232A16891B001E4E6F /* PathSliderDemo.swift in Sources */,
 				45E5129C2A0EC5190070D177 /* ContentView.swift in Sources */,
 				45E5129A2A0EC5190070D177 /* SwiftFieldsDemoApp.swift in Sources */,
 				45915A302A13CD4600916223 /* AngleEditorDemo.swift in Sources */,

@@ -1,5 +1,5 @@
-import SwiftUI
 import SwiftFields
+import SwiftUI
 
 struct PathSliderDemo: View {
 
@@ -42,7 +42,7 @@ struct PathSliderDemo: View {
     }
 }
 
-extension ContentView.Shape {
+extension PathSliderDemo.Shape {
     var path: Path {
         switch self {
         case .line:
