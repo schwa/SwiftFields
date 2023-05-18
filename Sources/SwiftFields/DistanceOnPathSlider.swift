@@ -5,7 +5,6 @@ public struct PathSlider: View {
     private var value: Double
 
     private let range: ClosedRange<Double>
-
     private let path: Path
 
     public init(value: Binding<Double>, in range: ClosedRange<Double> = 0 ... 1, path: Path) {
@@ -24,13 +23,13 @@ public struct PathSlider: View {
             path.trimmedPath(from: binding.wrappedValue, to: 1).stroke(Color.black.opacity(0.1), lineWidth: 4)
             path.trimmedPath(from: 0, to: binding.wrappedValue).stroke(Color.accentColor, lineWidth: 4)
 
-            Canvas { context, _ in
-                let segments = PathSegments(path: path, segments: 100)
-                for segment in segments.segments {
-                    let radius: CGFloat = 1
-                    context.fill(Path(ellipseIn: CGRect(x: segment.x - radius, y: segment.y - radius, width: radius * 2, height: radius * 2)), with: .color(.red))
-                }
-            }
+//            Canvas { context, _ in
+//                let segments = PathSegments(path: path, segments: 100)
+//                for segment in segments.segments {
+//                    let radius: CGFloat = 1
+//                    context.fill(Path(ellipseIn: CGRect(x: segment.x - radius, y: segment.y - radius, width: radius * 2, height: radius * 2)), with: .color(.red))
+//                }
+//            }
 
             DistanceOnPathSlider(value: binding, path: path) {
                 ZStack {

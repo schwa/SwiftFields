@@ -37,7 +37,6 @@ struct PathSliderDemo: View {
             .frame(maxWidth: 120)
             Color.clear.frame(height: 80)
             PathSlider(value: $value, in: 0 ... 100, path: path)
-            .border(Color.red)
         }
     }
 }
