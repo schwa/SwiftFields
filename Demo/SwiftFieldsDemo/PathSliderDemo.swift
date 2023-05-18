@@ -23,6 +23,7 @@ struct PathSliderDemo: View {
     }
 
     var body: some View {
+        let frame = path.boundingRect.insetBy(dx: -10, dy: -10)
         VStack {
             VStack {
                 Picker("Shape", selection: $shape) {
@@ -36,7 +37,9 @@ struct PathSliderDemo: View {
             }
             .frame(maxWidth: 120)
             Color.clear.frame(height: 80)
-            PathSlider(value: $value, in: 0 ... 100, path: path)
+            PathSlider(value: $value, in: 0 ... 100, path: path.offsetBy(dx: 10, dy: 10))
+                .frame(width: frame.width, height: frame.height)
+            .border(Color.pink.opacity(0.1))
         }
     }
 }
@@ -46,7 +49,7 @@ extension PathSliderDemo.Shape {
         switch self {
         case .line:
             return Path { path in
-                path.addLines([CGPoint(x: 0, y: 10), CGPoint(x: 100, y: 10)])
+                path.addLines([CGPoint(x: 0, y: 0), CGPoint(x: 100, y: 0)])
             }
         case .wigglyLine:
             return Path { path in

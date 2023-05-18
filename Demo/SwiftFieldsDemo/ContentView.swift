@@ -12,13 +12,14 @@ struct ContentView: View {
                 NavigationLink("PathSliderDemo") {
                     PathSliderDemo()
                 }
-                NavigationLink("VerticalSliderDemo") {
+                NavigationLink("ClosedRangeSliderDemo") {
                     ClosedRangeSliderDemo()
                 }
                 NavigationLink("VerticalSliderDemo") {
                     VerticalSliderDemo()
                 }
             }
+            .frame(minWidth: 200)
         }
     }
 }
