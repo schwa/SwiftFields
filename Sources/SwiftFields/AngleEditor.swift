@@ -4,7 +4,6 @@ import SwiftUI
 // https://mastodon.social/@ikenndac/110316785167632103
 
 public struct AngleEditor: View {
-
     @Binding
     var angle: Angle
 
@@ -91,7 +90,6 @@ public struct AngleEditor: View {
 
 struct AngleEditorPreview: PreviewProvider {
     static var previews: some View {
-
         let angle = Binding.constant(Angle(degrees: 160))
         let limit: ClosedRange<Angle> = .degrees(0) ... .degrees(180)
 

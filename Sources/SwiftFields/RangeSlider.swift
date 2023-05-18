@@ -9,7 +9,6 @@ public struct ClosedRangeSlider: View {
     }
 
     public var body: some View {
-
         let lowerBound = Binding {
             return value.lowerBound
         } set: { newValue in
@@ -47,5 +46,4 @@ public struct ClosedRangeSlider: View {
         }
         .frame(height: 20)
     }
-
 }

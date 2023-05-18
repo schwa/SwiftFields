@@ -28,7 +28,6 @@ internal extension CGPoint {
 }
 
 internal extension Path {
-
     static func circle(center: CGPoint, radius: CGFloat) -> Path {
         return Path(ellipseIn: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
     }
@@ -37,7 +36,6 @@ internal extension Path {
         if endAngle.degrees - startAngle.degrees >= 360 {
             return .circle(center: center, radius: radius)
         }
-
 
         return Path { path in
             if closed {
@@ -57,7 +55,6 @@ internal extension Path {
     }
 }
 
-
 internal extension CGPoint {
     func distanceSquared(to other: CGPoint) -> CGFloat {
         (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y)
@@ -70,7 +67,6 @@ internal extension Path {
         return CGPoint(x: r.midX, y: r.midY)
     }
 }
-
 
 internal struct PathSegments {
     let segments: [CGPoint]
@@ -103,7 +99,6 @@ internal struct PathSegments {
             }
         }
         return Double(closestSegmentIndex) / Double(segments.count - 1)
-
     }
 
     func segment(for value: Double) -> CGPoint {
