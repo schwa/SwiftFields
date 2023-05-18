@@ -32,6 +32,7 @@ internal extension Path {
         return Path(ellipseIn: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
     }
 
+    // swiftlint:disable:next function_parameter_count
     static func arc(center: CGPoint, radius: CGFloat, startAngle: Angle, endAngle: Angle, clockwise: Bool, closed: Bool) -> Path {
         if endAngle.degrees - startAngle.degrees >= 360 {
             return .circle(center: center, radius: radius)
@@ -87,7 +88,7 @@ internal struct PathSegments {
 
     func value(for point: CGPoint) -> Double {
         guard let firstSegment = segments.first else {
-            fatalError()
+            fatalError("No segments.")
         }
         var lowestDistance = firstSegment.distanceSquared(to: point)
         var closestSegmentIndex = 0
