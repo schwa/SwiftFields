@@ -162,3 +162,72 @@ internal extension ControlSize {
         return PathSliderGeometry(self)
     }
 }
+
+internal struct LineSegment: Equatable {
+    var from: CGPoint
+    var to: CGPoint
+
+    init(from: CGPoint, to: CGPoint) {
+        self.from = from
+        self.to = to
+    }
+}
+
+internal extension LineSegment {
+
+    init(x1: CGFloat, y1: CGFloat, x2: CGFloat, y2: CGFloat) {
+        self.init(from: CGPoint(x: x1, y: y1), to: CGPoint(x: x2, y: y2))
+    }
+
+    var boundingRect: CGRect {
+        return CGRect(x: min(from.x, to.x), y: min(from.y, to.y), width: abs(from.x - to.x), height: abs(from.y - to.y))
+    }
+
+    func insetBy(dx: CGFloat = 0, dy: CGFloat = 0) -> LineSegment {
+        var copy = self
+        if from.x <= to.x {
+            copy.from.x += dx
+            copy.to.x -= dx
+        }
+        else {
+            copy.from.x -= dx
+            copy.to.x += dx
+        }
+        if from.y <= to.y {
+            copy.from.y += dy
+            copy.to.y -= dy
+        }
+        else {
+            copy.from.y -= dy
+            copy.to.y += dy
+        }
+        return copy
+    }
+
+    func offsetBy(dx: CGFloat = 0, dy: CGFloat = 0) -> LineSegment {
+        var copy = self
+        copy.from.x += dx
+        copy.from.y += dy
+        copy.to.x += dx
+        copy.to.y += dy
+        return copy
+    }
+}
+
+internal extension LineSegment {
+    init(x: CGFloat, from y1: CGFloat, to y2: CGFloat) {
+        self.init(from: CGPoint(x: x, y: y1), to: CGPoint(x: x, y: y2))
+    }
+
+    init(y: CGFloat, from x1: CGFloat, to x2: CGFloat) {
+        self.init(from: CGPoint(x: x1, y: y), to: CGPoint(x: x2, y: y))
+    }
+}
+
+internal extension Path {
+    init(_ lineSegment: LineSegment) {
+        self = Path { path in
+            path.addLines([lineSegment.from, lineSegment.to])
+        }
+    }
+}
