@@ -203,14 +203,32 @@ struct YASliderDemo: View {
                 TextField("Value", value: $value, format: .number)
                 Slider(value: $value, in: 0 ... 80)
             }
+            .frame(width: 120)
             .padding()
             Spacer()
             HStack {
-                YASlider(value: $value, in: 0 ... 80, axis: .horizontal)
+                YASlider(value: $value, in: 0 ... 80, axis: .horizontal).frame(width: 120)
                 YASlider(value: $value, in: 0 ... 80, axis: .vertical).frame(height: 120)
+                YASlider(value: $value, in: 0 ... 100, axis: .horizontal).frame(width: 120)
+                .thumbStyle(AnyThumbStyle(content: { configuration -> Text in
+                    print(configuration.value, configuration.range)
+                    switch configuration.value {
+                    case 0 ..< 20:
+                        return Text("😭").font(.title)
+                    case 20 ..< 40:
+                        return Text("😟").font(.title)
+                    case 40 ..< 60:
+                        return Text("😒").font(.title)
+                    case 60 ..< 80:
+                        return Text("🤣").font(.title)
+                    case 80 ... 100:
+                        return Text("😭").font(.title)
+                    default:
+                        fatalError()
+                    }
+                }))
             }
             Spacer()
         }
-        .frame(width: 100)
     }
 }

@@ -32,15 +32,13 @@ public struct ClosedRangeSlider: View {
                 linePath.trimmedPath(from: value.lowerBound, to: value.upperBound).stroke(Color.accentColor, style: .init(lineWidth: 4, lineCap: .round))
 
                 PathSliderHelper(value: lowerBound, path: path) {
-                    Thumb {
-                        ArcShape(angle: .degrees(180), width: .degrees(180))
-                    }
+                    Thumb(value: value.lowerBound, range: lowerLimit)
+                    .thumbStyle(ShapedThumbStyle(shape: ArcShape(angle: .degrees(180), width: .degrees(180))))
                     .frame(width: 20, height: 20)
                 }
                 PathSliderHelper(value: upperBound, path: path) {
-                    Thumb {
-                        ArcShape(angle: .degrees(0), width: .degrees(180))
-                    }
+                    Thumb(value: value.upperBound, range: upperLimit)
+                    .thumbStyle(ShapedThumbStyle(shape: ArcShape(angle: .degrees(0), width: .degrees(180))))
                     .frame(width: 20, height: 20)
                 }
             }

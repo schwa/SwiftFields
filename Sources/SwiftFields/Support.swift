@@ -117,21 +117,6 @@ internal extension Color {
     static let sliderBackground = Color(white: 0.875)
 }
 
-internal struct Thumb <S>: View where S: Shape {
-    let shape: S
-
-    init(_ shape: () -> S) {
-        self.shape = shape()
-    }
-
-    var body: some View {
-        ZStack {
-            shape.fill(Color.white).shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.05), radius: 0.5, y: 2)
-            shape.stroke(Color.sliderBackground)
-        }
-    }
-}
-
 public struct PathSliderGeometry {
     public var thumbSize: CGSize
     public var trackWidth: CGFloat

@@ -44,9 +44,7 @@ public struct PathSlider: View {
             //trackPath.stroke(.shadow(.inner(color: .pink.opacity(0.0), radius: 1)), style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
             trackPath.trimmedPath(from: 0, to: binding.wrappedValue).stroke(activeTrackColor, style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
             PathSliderHelper(value: binding, path: thumbPath) {
-                Thumb {
-                    Circle()
-                }
+                Thumb(value: value, range: range)
                 .frame(width: geometry.thumbSize.width, height: geometry.thumbSize.height)
 #if os(macOS)
                 .accessibilityElement()
