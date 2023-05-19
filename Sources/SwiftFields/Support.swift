@@ -54,6 +54,12 @@ internal extension Path {
             path.addLines([from, to])
         }
     }
+
+    static func horizontalLine(from: CGFloat, to: CGFloat) -> Path {
+        return Path { path in
+            path.addLines([CGPoint(x: from, y: 0), CGPoint(x: to, y: 0)])
+        }
+    }
 }
 
 internal extension CGPoint {

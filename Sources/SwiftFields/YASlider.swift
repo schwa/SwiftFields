@@ -54,27 +54,6 @@ public struct YASlider: View {
 
 struct YASlider_Preview: PreviewProvider {
     static var previews: some View {
-        VStack {
-            trio.controlSize(.mini)
-            trio.controlSize(.small)
-            trio.controlSize(.regular)
-            trio.controlSize(.large)
-        }
-    }
-
-    static var trio: some View {
-        VStack {
-            HStack {
-                YASlider(value: .constant(0), in: 0 ... 1, axis: .horizontal)
-                YASlider(value: .constant(0.5), in: 0 ... 1, axis: .horizontal)
-                YASlider(value: .constant(1), in: 0 ... 1, axis: .horizontal)
-            }
-            HStack {
-                Slider(value: .constant(0), in: 0 ... 1)
-                Slider(value: .constant(0.5), in: 0 ... 1)
-                Slider(value: .constant(1), in: 0 ... 1)
-            }
-        }
-        .frame(height: 100)
+        YASlider(value: .constant(0.5), in: 0 ... 1, axis: .horizontal)
     }
 }

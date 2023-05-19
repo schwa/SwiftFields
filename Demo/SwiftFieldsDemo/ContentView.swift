@@ -49,9 +49,9 @@ struct YASliderDemo: View {
     var body: some View {
         VStack {
             TextField("Value", value: $value, format: .number)
-            Slider(value: $value, in: 0 ... 100)
-            YASlider(value: $value, in: 0 ... 100, axis: .horizontal)
-            YASlider(value: $value, in: 0 ... 100, axis: .vertical).frame(height: 100)
+            Slider(value: $value, in: 0 ... 80)
+            YASlider(value: $value, in: 0 ... 80, axis: .horizontal)
+//            YASlider(value: $value, in: 0 ... 100, axis: .vertical).frame(height: 100)
         }
         .frame(width: 100)
     }
