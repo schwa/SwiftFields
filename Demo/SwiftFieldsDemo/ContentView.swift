@@ -205,7 +205,10 @@ struct YASliderDemo: View {
             }
             .padding()
             Spacer()
-            YASlider(value: $value, in: 0 ... 80, axis: .horizontal)
+            HStack {
+                YASlider(value: $value, in: 0 ... 80, axis: .horizontal)
+                YASlider(value: $value, in: 0 ... 80, axis: .vertical).frame(height: 120)
+            }
             Spacer()
         }
         .frame(width: 100)

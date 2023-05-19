@@ -179,6 +179,23 @@ internal extension LineSegment {
         self.init(from: CGPoint(x: x1, y: y1), to: CGPoint(x: x2, y: y2))
     }
 
+    init(x: CGFloat, from y1: CGFloat, to y2: CGFloat) {
+        self.init(from: CGPoint(x: x, y: y1), to: CGPoint(x: x, y: y2))
+    }
+
+    init(y: CGFloat, from x1: CGFloat, to x2: CGFloat) {
+        self.init(from: CGPoint(x: x1, y: y), to: CGPoint(x: x2, y: y))
+    }
+
+    init(axis: Axis, from: CGFloat, to: CGFloat) {
+        switch axis {
+        case .horizontal:
+            self.init(from: CGPoint(x: from, y: 0), to: CGPoint(x: to, y: 0))
+        case .vertical:
+            self.init(from: CGPoint(x: 0, y: from), to: CGPoint(x: 0, y: to))
+        }
+    }
+
     var boundingRect: CGRect {
         return CGRect(x: min(from.x, to.x), y: min(from.y, to.y), width: abs(from.x - to.x), height: abs(from.y - to.y))
     }
@@ -204,6 +221,10 @@ internal extension LineSegment {
         return copy
     }
 
+    func insetBy(_ point: CGPoint) -> LineSegment {
+        insetBy(dx: point.x, dy: point.y)
+    }
+
     func offsetBy(dx: CGFloat = 0, dy: CGFloat = 0) -> LineSegment {
         var copy = self
         copy.from.x += dx
@@ -212,15 +233,9 @@ internal extension LineSegment {
         copy.to.y += dy
         return copy
     }
-}
 
-internal extension LineSegment {
-    init(x: CGFloat, from y1: CGFloat, to y2: CGFloat) {
-        self.init(from: CGPoint(x: x, y: y1), to: CGPoint(x: x, y: y2))
-    }
-
-    init(y: CGFloat, from x1: CGFloat, to x2: CGFloat) {
-        self.init(from: CGPoint(x: x1, y: y), to: CGPoint(x: x2, y: y))
+    func offsetBy(_ point: CGPoint) -> LineSegment {
+        offsetBy(dx: point.x, dy: point.y)
     }
 }
 
@@ -228,6 +243,34 @@ internal extension Path {
     init(_ lineSegment: LineSegment) {
         self = Path { path in
             path.addLines([lineSegment.from, lineSegment.to])
+        }
+    }
+}
+
+internal extension CGPoint {
+    init(axis: Axis, length: CGFloat) {
+        switch axis {
+        case .horizontal:
+            self.init(x: length, y: 0)
+        case .vertical:
+            self.init(x: 0, y: length)
+        }
+    }
+}
+
+internal extension LineSegment {
+    func flipped() -> LineSegment {
+        return LineSegment(from: to, to: from)
+    }
+}
+
+internal extension Axis {
+    static prefix func !(value: Self) -> Axis {
+        switch value {
+        case .horizontal:
+            return .vertical
+        case .vertical:
+            return .horizontal
         }
     }
 }
