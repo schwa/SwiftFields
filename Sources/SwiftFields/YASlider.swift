@@ -23,11 +23,11 @@ public struct YASlider: View {
         case .horizontal:
             GeometryReader { proxy in
                 let trackPath = Path.line(
-                    from:CGPoint(x: geometry.trackWidth / 2, y: halfThumbSize.height),
+                    from: CGPoint(x: geometry.trackWidth / 2, y: halfThumbSize.height),
                     to: CGPoint(x: proxy.size.width - geometry.trackWidth / 2, y: halfThumbSize.height)
                 )
                 let thumbPath = Path.line(
-                    from:CGPoint(x: halfThumbSize.width, y: halfThumbSize.height),
+                    from: CGPoint(x: halfThumbSize.width, y: halfThumbSize.height),
                     to: CGPoint(x: proxy.size.width - halfThumbSize.width, y: halfThumbSize.height)
                 )
                 PathSlider(value: _value, in: limit, trackPath: trackPath, thumbPath: thumbPath)
@@ -37,7 +37,7 @@ public struct YASlider: View {
         case .vertical:
             GeometryReader { proxy in
                 let trackPath = Path.line(
-                    from:CGPoint(x: halfThumbSize.width, y: proxy.size.height - geometry.trackWidth / 2),
+                    from: CGPoint(x: halfThumbSize.width, y: proxy.size.height - geometry.trackWidth / 2),
                     to: CGPoint(x: halfThumbSize.width, y: geometry.trackWidth / 2)
                 )
                 let thumbPath = Path.line(

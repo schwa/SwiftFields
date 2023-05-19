@@ -104,7 +104,6 @@ extension AngleEditor.Geometry {
     }
 }
 
-
 struct AngleEditorPreview: PreviewProvider {
     static var previews: some View {
         let angle = Binding.constant(Angle(degrees: 160))

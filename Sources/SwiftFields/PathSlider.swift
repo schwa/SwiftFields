@@ -128,6 +128,5 @@ struct PathSlider_Preview: PreviewProvider {
     static var previews: some View {
         PathSlider(value: .constant(0), trackPath: Path.horizontalLine(from: 0, to: 100).offsetBy(dx: 0, dy: 10), thumbPath: Path.horizontalLine(from: 10, to: 90).offsetBy(dx: 0, dy: 10))
             .frame(width: 100, height: 20)
-
     }
 }
