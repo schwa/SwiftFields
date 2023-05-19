@@ -1,18 +1,28 @@
 import SwiftUI
 
-public struct YASlider: View {
+public struct YASlider <Label, ValueLabel> : View where Label : View, ValueLabel : View {
     @Binding
     private var value: Double
+
+    private let limit: ClosedRange<Double>
+    private let step: Double?
+    private let label: Label?
+    private let minimumValueLabel: ValueLabel?
+    private let maximumValueLabel: ValueLabel?
+    private let onValueChanged: ((Bool) -> Void)
+    private let axis: Axis
 
     @Environment(\.controlSize)
     private var controlSize
 
-    private let limit: ClosedRange<Double>
-    private let axis: Axis
-
-    public init(value: Binding<Double>, in limit: ClosedRange<Double> = 0 ... 1, axis: Axis) {
+    init(value: Binding<Double>, limit: ClosedRange<Double>, step: Double? = nil, label: Label?, minimumValueLabel: ValueLabel? = nil, maximumValueLabel: ValueLabel? = nil, onValueChanged: ((Bool) -> Void)? = nil, axis: Axis) {
         self._value = value
         self.limit = limit
+        self.step = step
+        self.label = label
+        self.minimumValueLabel = minimumValueLabel
+        self.maximumValueLabel = maximumValueLabel
+        self.onValueChanged = onValueChanged ?? { _ in }
         self.axis = axis
     }
 
@@ -46,11 +56,36 @@ public struct YASlider: View {
 
 // MARK: -
 
+extension YASlider where ValueLabel == EmptyView {
+    public init(value: Binding<Double>, in limit: ClosedRange<Double> = 0 ... 1, step: Double? = nil, label: () -> Label, onValueChanged: ((Bool) -> Void)? = nil, axis: Axis) {
+        self.init(value: value, limit: limit, step: step, label: label(), minimumValueLabel: nil, maximumValueLabel: nil, onValueChanged: onValueChanged, axis: axis)
+    }
+}
+
+extension YASlider where Label == EmptyView, ValueLabel == EmptyView {
+    public init(value: Binding<Double>, in limit: ClosedRange<Double> = 0 ... 1, step: Double? = nil, onValueChanged: ((Bool) -> Void)? = nil, axis: Axis) {
+        self.init(value: value, limit: limit, step: step, label: nil, minimumValueLabel: nil, maximumValueLabel: nil, onValueChanged: onValueChanged, axis: axis)
+    }
+}
+
+// MARK: -
+
 struct YASlider_Preview: PreviewProvider {
     static var previews: some View {
-        VStack {
-            YASlider(value: .constant(0.5), axis: .horizontal)
-            YASlider(value: .constant(0.5), axis: .vertical).frame(height: 50)
+        Form {
+            YASlider(value: .constant(0.5), in: 0 ... 1, label: { Text("Label") }, axis: .horizontal)
+            Slider(value: .constant(0.5), in: 0 ... 1, label: { Text("Label") })
+            LabeledContent("Variants") {
+                Slider(value: .constant(0.5), in: 0 ... 1, step: 0.1) {
+                    Text("Label")
+                } minimumValueLabel: {
+                    Text("Min")
+                } maximumValueLabel: {
+                    Text("Max")
+                } onEditingChanged: { _ in
+                }
+            }
+            YASlider(value: .constant(0.5), in: 0 ... 1, label: { Text("Label") }, axis: .vertical).frame(height: 50)
         }
     }
 }
