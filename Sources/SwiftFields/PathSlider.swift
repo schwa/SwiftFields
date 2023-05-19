@@ -43,8 +43,8 @@ public struct PathSlider: View {
             trackPath.stroke(Color.sliderBackground, style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
             //trackPath.stroke(.shadow(.inner(color: .pink.opacity(0.0), radius: 1)), style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
             trackPath.trimmedPath(from: 0, to: binding.wrappedValue).stroke(activeTrackColor, style: .init(lineWidth: geometry.trackWidth, lineCap: .round))
-            PathSliderHelper(value: binding, path: thumbPath) {
-                Thumb(value: value, range: range)
+            PathSliderHelper(value: binding, path: thumbPath) { isPressed in
+                Thumb(value: value, range: range, isPressed: isPressed)
                 .frame(width: geometry.thumbSize.width, height: geometry.thumbSize.height)
 #if os(macOS)
                 .accessibilityElement()
@@ -100,19 +100,22 @@ internal struct PathSliderHelper <Thumb>: View where Thumb: View {
     @Binding
     private var value: Double
 
+//    @GestureState
+//    var isPressed = false
+
     private let path: Path
     private let segments: PathSegments
-    private let thumb: Thumb
+    private let thumb: (Bool) -> Thumb
 
-    init(value: Binding<Double>, path: Path, segments: Int = 100, thumb: () -> Thumb) {
+    init(value: Binding<Double>, path: Path, segments: Int = 100, @ViewBuilder thumb: @escaping (Bool) -> Thumb) {
         self._value = value
         self.path = path
-        self.thumb = thumb()
+        self.thumb = thumb
         self.segments = PathSegments(path: path, segments: segments)
     }
 
     var body: some View {
-        thumb.position(segments.segment(for: value)).gesture(thumbDragGesture)
+        thumb(false).position(segments.segment(for: value)).gesture(thumbDragGesture)
     }
 
     private var thumbDragGesture: some Gesture {

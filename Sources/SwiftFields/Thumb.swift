@@ -46,10 +46,12 @@ public struct Thumb: View {
 
     let value: Double
     let range: ClosedRange<Double>
+    let isPressed: Bool
 
-    public init(value: Double, range: ClosedRange<Double>) {
+    public init(value: Double, range: ClosedRange<Double>, isPressed: Bool) {
         self.value = value
         self.range = range
+        self.isPressed = isPressed
     }
 
     public var body: some View {

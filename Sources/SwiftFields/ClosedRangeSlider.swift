@@ -31,13 +31,13 @@ public struct ClosedRangeSlider: View {
                 linePath.trimmedPath(from: 0, to: 1).stroke(Color(white: 0.87), style: .init(lineWidth: 4, lineCap: .round))
                 linePath.trimmedPath(from: value.lowerBound, to: value.upperBound).stroke(Color.accentColor, style: .init(lineWidth: 4, lineCap: .round))
 
-                PathSliderHelper(value: lowerBound, path: path) {
-                    Thumb(value: value.lowerBound, range: lowerLimit)
+                PathSliderHelper(value: lowerBound, path: path) { isPressed in
+                    Thumb(value: value.lowerBound, range: lowerLimit, isPressed: isPressed)
                     .thumbStyle(ShapedThumbStyle(shape: ArcShape(angle: .degrees(180), width: .degrees(180))))
                     .frame(width: 20, height: 20)
                 }
-                PathSliderHelper(value: upperBound, path: path) {
-                    Thumb(value: value.upperBound, range: upperLimit)
+                PathSliderHelper(value: upperBound, path: path) { isPressed in
+                    Thumb(value: value.upperBound, range: upperLimit, isPressed: isPressed)
                     .thumbStyle(ShapedThumbStyle(shape: ArcShape(angle: .degrees(0), width: .degrees(180))))
                     .frame(width: 20, height: 20)
                 }
