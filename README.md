@@ -21,3 +21,5 @@ Current widgets:
 - [ ]: Get inner shadow/glow working for PathSlider
 - [ ]: Accessibility for ClosedRangeSlider
 - [ ]: Make YASlider (PathSlider?) support labels.
+- [ ]: Angle editor in dark mode
+- [ ]: iOS pass on all widgets
