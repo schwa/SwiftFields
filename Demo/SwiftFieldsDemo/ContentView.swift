@@ -211,7 +211,6 @@ struct YASliderDemo: View {
                 YASlider(value: $value, in: 0 ... 80, axis: .vertical).frame(height: 120)
                 YASlider(value: $value, in: 0 ... 100, axis: .horizontal).frame(width: 120)
                 .thumbStyle(AnyThumbStyle(content: { configuration -> Text in
-                    print(configuration.value, configuration.range)
                     switch configuration.value {
                     case 0 ..< 20:
                         return Text("😭").font(.title)

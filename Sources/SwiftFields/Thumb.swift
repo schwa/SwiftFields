@@ -38,12 +38,19 @@ public extension View {
     }
 }
 
+// MARK: -
+
 public struct Thumb: View {
     @Environment(\.thumbStyle)
     var thumbStyle
 
     let value: Double
     let range: ClosedRange<Double>
+
+    public init(value: Double, range: ClosedRange<Double>) {
+        self.value = value
+        self.range = range
+    }
 
     public var body: some View {
         let configuration = ThumbStyleConfiguration(value: value, range: range)
@@ -83,7 +90,7 @@ public struct ShapedThumbStyle <S>: ThumbStyle where S: Shape {
 public struct AnyThumbStyle <Content>: ThumbStyle where Content: View {
     private let content: (Configuration) -> Content
 
-    public init(content: @escaping (Configuration) -> Content) {
+    public init(@ViewBuilder content: @escaping (Configuration) -> Content) {
         self.content = content
     }
 
