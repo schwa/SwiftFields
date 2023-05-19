@@ -8,7 +8,7 @@ Current widgets:
 
 - ``AngleEditor``: A widget for editing angles. ![Screenshot of AngleEditor](Documentation/AngleEditorDemo.png)
 - ``ClosedRangedSlider``: A slider for editing a ClosedRange of Doubles. ![Screenshot of ClosedRangeSlider](Documentation/ClosedRangeSliderDemo.png)
-- ``PathSlider``: Like SwiftUI`s `Slider` but you can slide the thumb along any arbitrary path. ![Screenshot of PathSlider](Documentation/PathSliderDemo.png)
+- ``PathSlider``: Like SwiftUI's `Slider` but you can slide the thumb along any arbitrary path. ![Screenshot of PathSlider](Documentation/PathSliderDemo.png)
 - ``YASlider``: Like SwiftUI's `Slider` but with more functionality including vertical orientation, ~~custom thumb, and custom track~~. (Built on top of ``PathSlider``) ![Screenshot of YASlider](Documentation/YASliderDemo.png)
 
 ## TODO
