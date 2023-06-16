@@ -15,7 +15,7 @@ let package = Package(
             targets: ["SwiftFields"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/schwa/SwiftFormats", branch: "main")
+        .package(url: "https://github.com/schwa/SwiftFormats", from: "0.3.1")
     ],
     targets: [
         .target(

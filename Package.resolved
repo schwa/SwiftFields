@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/schwa/SwiftFormats",
       "state" : {
-        "branch" : "main",
-        "revision" : "758b0d73bc8f58985f68023ef75bc63b1f679bd5"
+        "revision" : "758b0d73bc8f58985f68023ef75bc63b1f679bd5",
+        "version" : "0.3.1"
       }
     }
   ],
