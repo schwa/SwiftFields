@@ -100,8 +100,8 @@ internal struct PathSliderHelper <Thumb>: View where Thumb: View {
     @Binding
     private var value: Double
 
-//    @GestureState
-//    var isPressed = false
+    @State
+    var isPressed = false
 
     private let path: Path
     private let segments: PathSegments
@@ -115,12 +115,16 @@ internal struct PathSliderHelper <Thumb>: View where Thumb: View {
     }
 
     var body: some View {
-        thumb(false).position(segments.segment(for: value)).gesture(thumbDragGesture)
+        thumb(isPressed).position(segments.segment(for: value)).gesture(thumbDragGesture)
     }
 
     private var thumbDragGesture: some Gesture {
         DragGesture().onChanged { value in
+            isPressed = true
             self.value = segments.value(for: value.location)
+        }
+        .onEnded { value in
+            isPressed = false
         }
     }
 }

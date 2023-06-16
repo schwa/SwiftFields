@@ -15,6 +15,7 @@ private extension ThumbStyle {
 public struct ThumbStyleConfiguration {
     public var value: Double
     public var range: ClosedRange<Double>
+    public var isPressed: Bool
 }
 
 public struct ThumbStyleKey: EnvironmentKey {
@@ -55,7 +56,7 @@ public struct Thumb: View {
     }
 
     public var body: some View {
-        let configuration = ThumbStyleConfiguration(value: value, range: range)
+        let configuration = ThumbStyleConfiguration(value: value, range: range, isPressed: isPressed)
         return thumbStyle.makeAnyBody(configuration: configuration)
     }
 }
@@ -81,7 +82,12 @@ public struct ShapedThumbStyle <S>: ThumbStyle where S: Shape {
 
     public func makeBody(configuration: Configuration) -> some View {
         ZStack {
-            shape.fill(Color.white).shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.05), radius: 0.5, y: 2)
+            if configuration.isPressed {
+                shape.fill(Color.red).shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.05), radius: 0.5, y: 2)
+            }
+            else {
+                shape.fill(Color.white).shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.05), radius: 0.5, y: 2)
+            }
             shape.stroke(Color.sliderBackground)
         }
     }
