@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import SwiftUI
 
 public struct YASlider: View {
@@ -54,3 +55,4 @@ struct YASlider_Preview: PreviewProvider {
         }
     }
 }
+#endif

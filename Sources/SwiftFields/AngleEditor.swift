@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import SwiftFormats
 import SwiftUI
 
@@ -129,4 +130,4 @@ struct AngleEditorPreview: PreviewProvider {
         }
     }
 }
-
+#endif

@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import SwiftUI
 
 public struct ClosedRangeSlider: View {
@@ -48,3 +49,4 @@ public struct ClosedRangeSlider: View {
         .frame(height: 20)
     }
 }
+#endif

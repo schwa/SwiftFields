@@ -6,6 +6,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
+                #if !os(tvOS)
                 NavigationLink("AngleEditorDemo") {
                     AngleEditorDemo()
                 }
@@ -18,6 +19,7 @@ struct ContentView: View {
                 NavigationLink("YASliderDemo") {
                     YASliderDemo()
                 }
+                #endif
             }
             .frame(minWidth: 200)
         }
@@ -26,6 +28,7 @@ struct ContentView: View {
 
 // MARK: -
 
+#if !os(tvOS)
 struct AngleEditorDemo: View {
 
     @State
@@ -214,3 +217,4 @@ struct YASliderDemo: View {
         .frame(width: 100)
     }
 }
+#endif

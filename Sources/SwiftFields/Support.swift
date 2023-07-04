@@ -136,6 +136,9 @@ public struct PathSliderGeometry {
     public var thumbSize: CGSize
     public var trackWidth: CGFloat
 
+    #if os(tvOS)
+    static let tvOS = PathSliderGeometry(thumbSize: CGSize(width: 20, height: 20), trackWidth: 4)
+    #else
     public init(_ controlSize: ControlSize) {
         switch controlSize {
         case .mini:
@@ -158,13 +161,16 @@ public struct PathSliderGeometry {
             trackWidth = 4
         }
     }
+    #endif
 }
 
+#if !os(tvOS)
 internal extension ControlSize {
     var pathSliderGeometry: PathSliderGeometry {
         return PathSliderGeometry(self)
     }
 }
+#endif
 
 internal struct LineSegment: Equatable {
     var from: CGPoint

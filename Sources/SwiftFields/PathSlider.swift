@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import SwiftUI
 
 public struct PathSlider: View {
@@ -130,3 +131,4 @@ struct PathSlider_Preview: PreviewProvider {
             .frame(width: 100, height: 20)
     }
 }
+#endif
