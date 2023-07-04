@@ -150,6 +150,9 @@ public struct PathSliderGeometry {
         case .large:
             thumbSize = CGSize(width: 20, height: 20)
             trackWidth = 4
+        case .extraLarge:
+            thumbSize = CGSize(width: 20, height: 20)
+            trackWidth = 4
         @unknown default:
             thumbSize = CGSize(width: 20, height: 20)
             trackWidth = 4

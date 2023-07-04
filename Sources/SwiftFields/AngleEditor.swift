@@ -96,6 +96,10 @@ extension AngleEditor.Geometry {
             canvasDiameter = 80
             borderWidth = 4
             edgeWidth = 3
+        case .extraLarge:
+            canvasDiameter = 80
+            borderWidth = 4
+            edgeWidth = 3
         @unknown default:
             canvasDiameter = 64
             borderWidth = 4
