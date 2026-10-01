@@ -183,7 +183,6 @@ internal struct LineSegment: Equatable {
 }
 
 internal extension LineSegment {
-
     init(x1: CGFloat, y1: CGFloat, x2: CGFloat, y2: CGFloat) {
         self.init(from: CGPoint(x: x1, y: y1), to: CGPoint(x: x2, y: y2))
     }
@@ -274,7 +273,7 @@ internal extension LineSegment {
 }
 
 internal extension Axis {
-    static prefix func !(value: Self) -> Axis {
+    static prefix func ! (value: Self) -> Axis {
         switch value {
         case .horizontal:
             return .vertical

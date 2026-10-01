@@ -5,7 +5,7 @@ import SwiftUI
 // https://mastodon.social/@ikenndac/110316785167632103
 
 public struct AngleEditor: View {
-    fileprivate struct Geometry {
+    struct Geometry {
         var canvasDiameter: CGFloat
         var borderWidth: CGFloat
         var edgeWidth: CGFloat
@@ -34,32 +34,7 @@ public struct AngleEditor: View {
             HStack {
                 Canvas { context, size in
                     context.drawLayer { context in
-                        let center = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
-                        let radius = min(size.width, size.height) / 2 - geometry.borderWidth - shadowRadius
-
-                        let startLimitAngle = Angle(degrees: limit.lowerBound.degrees - 180)
-                        let endLimitAngle = Angle(degrees: limit.upperBound.degrees - 180)
-
-                        let limitArc = Path.arc(center: center, radius: radius, startAngle: startLimitAngle, endAngle: endLimitAngle, clockwise: false, closed: true)
-                        context.fill(limitArc, with: .color(.black.opacity(0.1)))
-                        //context.fill(limitArc, with: .color(color))
-
-                        let startAngle = Angle(degrees: 0 - angle.degrees / 2 - 90)
-                        let endAngle = Angle(degrees: 0 + angle.degrees / 2 - 90)
-                        let angleArc = Path.arc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false, closed: true)
-                        context.fill(angleArc, with: .color(color.opacity(0.5)))
-                        if angle.degrees != 360 {
-                            let arcEdges = Path { path in
-                                path.move(to: center)
-                                path.addLine(to: center + CGPoint(x: radius, y: 0).rotated(by: startAngle))
-                                if angle.degrees != 0 {
-                                    path.move(to: center)
-                                    path.addLine(to: center + CGPoint(x: radius, y: 0).rotated(by: endAngle))
-                                }
-                            }
-                            context.stroke(arcEdges, with: .color(color), style: .init(lineWidth: geometry.edgeWidth, dash: [geometry.edgeWidth * 2, geometry.edgeWidth * 2], dashPhase: geometry.edgeWidth * 2))
-                        }
-                        context.stroke(limitArc, with: .color(.white), style: .init(lineWidth: geometry.borderWidth))
+                        drawArcs(in: &context, size: size, geometry: geometry, shadowRadius: shadowRadius, color: color)
                     }
                     context.addFilter(.shadow(radius: shadowRadius))
                 }
@@ -73,6 +48,35 @@ public struct AngleEditor: View {
         .accessibilityRepresentation {
             Slider(value: $angle.degrees, in: 0 ... 360)
         }
+    }
+
+    private func drawArcs(in context: inout GraphicsContext, size: CGSize, geometry: Geometry, shadowRadius: CGFloat, color: Color) {
+        let center = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
+        let radius = min(size.width, size.height) / 2 - geometry.borderWidth - shadowRadius
+
+        let startLimitAngle = Angle(degrees: limit.lowerBound.degrees - 180)
+        let endLimitAngle = Angle(degrees: limit.upperBound.degrees - 180)
+
+        let limitArc = Path.arc(center: center, radius: radius, startAngle: startLimitAngle, endAngle: endLimitAngle, clockwise: false, closed: true)
+        context.fill(limitArc, with: .color(.black.opacity(0.1)))
+        //context.fill(limitArc, with: .color(color))
+
+        let startAngle = Angle(degrees: 0 - angle.degrees / 2 - 90)
+        let endAngle = Angle(degrees: 0 + angle.degrees / 2 - 90)
+        let angleArc = Path.arc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false, closed: true)
+        context.fill(angleArc, with: .color(color.opacity(0.5)))
+        if angle.degrees != 360 {
+            let arcEdges = Path { path in
+                path.move(to: center)
+                path.addLine(to: center + CGPoint(x: radius, y: 0).rotated(by: startAngle))
+                if angle.degrees != 0 {
+                    path.move(to: center)
+                    path.addLine(to: center + CGPoint(x: radius, y: 0).rotated(by: endAngle))
+                }
+            }
+            context.stroke(arcEdges, with: .color(color), style: .init(lineWidth: geometry.edgeWidth, dash: [geometry.edgeWidth * 2, geometry.edgeWidth * 2], dashPhase: geometry.edgeWidth * 2))
+        }
+        context.stroke(limitArc, with: .color(.white), style: .init(lineWidth: geometry.borderWidth))
     }
 }
 
